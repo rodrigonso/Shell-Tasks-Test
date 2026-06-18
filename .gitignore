@@ -1,0 +1,58 @@
+# Visual Studio user/local files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output directories
+[Dd]ebug/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+ARM/
+ARM64/
+bin/
+obj/
+out/
+build/
+
+# MSBuild/C++ intermediate and output files
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.iobj
+*.ipdb
+*.tlog
+*.lastbuildstate
+*.recipe
+*.FileListAbsolute.txt
+*.log
+
+# Executables and packaged app output
+*.exe
+*.dll
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+AppxLayout/
+AppPackages/
+BundleArtifacts/
+Generated Files/
+
+# Test and coverage output
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+*.swp
+*.tmp
+*.temp
