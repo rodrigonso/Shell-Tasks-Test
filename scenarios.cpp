@@ -14,6 +14,11 @@ static const wchar_t* StateToString(AppTaskState state)
     }
 }
 
+static Uri TaskIconUri()
+{
+    return Uri(L"ms-appx:///Assets/icon.png");
+}
+
 static void PrintTaskInfo(AppTaskInfo const& task)
 {
     wprintf(L"  ID:       %s\n", task.Id().c_str());
@@ -64,8 +69,8 @@ void CreateBasicTask(TaskContext& ctx)
     auto task = AppTaskInfo::Create(
         L"Basic Test Task",
         L"A simple test of the AppTask API",
-        iconUri,
         deepLink,
+        iconUri,
         content
     );
 
@@ -87,8 +92,8 @@ void CreateTaskWithSteps(TaskContext& ctx)
     auto task = AppTaskInfo::Create(
         L"Multi-Step Task",
         L"Testing CreateSequenceOfSteps",
-        Uri(L"ms-appx:///Assets/icon.png"),
         Uri(L"ms-apptask:///steps"),
+        TaskIconUri(),
         content
     );
 
@@ -110,8 +115,8 @@ void CreateTaskWithPreviewThumbnail(TaskContext& ctx)
     auto task = AppTaskInfo::Create(
         L"Thumbnail Task",
         L"Testing CreatePreviewThumbnail",
-        Uri(L"ms-appx:///Assets/icon.png"),
         Uri(L"ms-apptask:///thumbnail"),
+        TaskIconUri(),
         content
     );
 
@@ -132,8 +137,8 @@ void CreateTaskWithTextSummary(TaskContext& ctx)
     auto task = AppTaskInfo::Create(
         L"Text Summary Task",
         L"Testing CreateTextSummaryResult",
-        Uri(L"ms-appx:///Assets/icon.png"),
         Uri(L"ms-apptask:///summary"),
+        TaskIconUri(),
         content
     );
 
@@ -166,8 +171,8 @@ void CreateTaskWithGeneratedAssets(TaskContext& ctx)
     auto task = AppTaskInfo::Create(
         L"Generated Assets Task",
         L"Testing CreateGeneratedAssetsResult",
-        Uri(L"ms-appx:///Assets/icon.png"),
         Uri(L"ms-apptask:///assets"),
+        TaskIconUri(),
         content
     );
 
@@ -317,8 +322,8 @@ void AddInteractiveElements(TaskContext& ctx)
         auto task = AppTaskInfo::Create(
             L"Interactive Task",
             L"Testing interactive elements",
-            Uri(L"ms-appx:///Assets/icon.png"),
             Uri(L"ms-apptask:///interactive"),
+            TaskIconUri(),
             content
         );
 
@@ -454,4 +459,27 @@ void RemoveAllTasks()
     }
 
     wprintf(L"Removed %u task(s).\n", count);
+}
+
+// 16. Create a task that explicitly uses the packaged PNG as its task icon.
+void CreateTaskWithIcon(TaskContext& ctx)
+{
+    wprintf(L"\n=== Create Task with Actual Icon ===\n");
+
+    auto content = AppTaskContent::CreateSequenceOfSteps(
+        { L"Displaying packaged icon" },
+        L"This task uses Assets\\icon.png as its icon."
+    );
+
+    auto task = AppTaskInfo::Create(
+        L"Task with Actual Icon",
+        L"Using the packaged PNG task icon",
+        Uri(L"ms-apptask:///icon"),
+        TaskIconUri(),
+        content
+    );
+
+    ctx.currentTask = task;
+    wprintf(L"Task created with icon: %s\n", task.IconUri().ToString().c_str());
+    PrintTaskInfo(task);
 }

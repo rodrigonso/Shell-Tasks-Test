@@ -22,6 +22,7 @@ static void PrintMenu()
     wprintf(L"  13. Inspect Task Details\n");
     wprintf(L"  14. Remove Current Task\n");
     wprintf(L"  15. Remove All Tasks\n");
+    wprintf(L"  16. Create Task with Actual Icon\n");
     wprintf(L"  0.  Exit\n");
     wprintf(L"========================================\n");
     wprintf(L"> ");
@@ -74,6 +75,7 @@ int wmain()
             case 13: InspectTaskDetails(ctx);              break;
             case 14: RemoveCurrentTask(ctx);               break;
             case 15: RemoveAllTasks();                     break;
+            case 16: CreateTaskWithIcon(ctx);              break;
 
             default:
                 wprintf(L"Invalid choice. Try again.\n");

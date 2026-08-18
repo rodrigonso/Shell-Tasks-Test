@@ -26,3 +26,4 @@ void EnumerateTasks();
 void InspectTaskDetails(TaskContext& ctx);
 void RemoveCurrentTask(TaskContext& ctx);
 void RemoveAllTasks();
+void CreateTaskWithIcon(TaskContext& ctx);
